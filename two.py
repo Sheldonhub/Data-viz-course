@@ -1,4 +1,3 @@
-
 import pygal
 
 gdpinfo = {
@@ -36,8 +35,7 @@ def read_csv_as_nested_dict(filename, keyfield, separator, quote):
             table[rowid] = row
     return table
 
-
-#print(read_csv_as_nested_dict('table1.csv', 'Field1', ',', '"'))
+print(read_csv_as_nested_dict('table1.csv', 'Field1', ', ', '"'))
 
 def build_plot_values(gdpinfo, gdpdata):
     """
@@ -78,7 +76,7 @@ def build_plot_dict(gdpinfo, country_list):
 
 
     for country in country_list:
-        #if country in country_list:
+        if country in country_list:
         try:
             table[country] = build_plot_values(gdpinfo, gdp_dat[country])
         except KeyError:
@@ -87,7 +85,5 @@ def build_plot_dict(gdpinfo, country_list):
     return table
 
 
-#print(build_plot_dict({'min_year': 2000, 'country_name': 'Country Name', 'separator': ',', 'country_code': 'Code', 'gdpfile': 'gdptable1.csv', 'quote': '"', 'max_year': 2005}, ['Country1']))
-
-
-#print(build_plot_dict(gdpinfo, ['Bangladesh']))
+print(build_plot_dict({'min_year': 2000, 'country_name': 'Country Name', 'separator': ',', 'country_code': 'Code', 'gdpfile': 'gdptable1.csv', 'quote': '"', 'max_year': 2005}, ['Country1']))
+print(build_plot_dict(gdpinfo, ['Bangladesh']))
