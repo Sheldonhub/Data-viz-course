@@ -32,10 +32,10 @@ def reconcile_countries_by_name(plot_countries, gdp_countries):
 def build_map_dict_by_name(gdpinfo, plot_countries, year):
     """
     Inputs:
-      gdpinfo        - A GDP information dictionary
+      gdpinfo- A GDP information dictionary
       plot_countries - Dictionary whose keys are plot library country codes
                        and values are the corresponding country name
-      year           - String year to create GDP mapping for
+      year - String year to create GDP mapping for
     Output:
       A tuple containing a dictionary and two sets.  The dictionary
       maps country codes from plot_countries to the log (base 10) of
@@ -109,22 +109,13 @@ def test_render_world_map():
         "country_code": "Country Code"
     }
 
-    # Get pygal country code map
     pygal_countries = pygal.maps.world.COUNTRIES
 
-    # 1960
+
     render_world_map(gdpinfo, pygal_countries, "1960", "isp_gdp_world_name_1960.svg")
-
-    # 1980
     render_world_map(gdpinfo, pygal_countries, "1980", "isp_gdp_world_name_1980.svg")
-
-    # 2000
     render_world_map(gdpinfo, pygal_countries, "2000", "isp_gdp_world_name_2000.svg")
-
-    # 2010
     render_world_map(gdpinfo, pygal_countries, "2010", "isp_gdp_world_name_2010.svg")
 
 
-# Make sure the following call to test_render_world_map is commented
-# out when submitting to OwlTest/CourseraTest.
-#test_render_world_map()
+
