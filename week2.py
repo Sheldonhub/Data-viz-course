@@ -1,6 +1,4 @@
-Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 22:20:52) [MSC v.1916 32 bit (Intel)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
->>> import csv
+import csv
 import pygal
 
 gdpinfo = {
@@ -14,19 +12,6 @@ gdpinfo = {
     }
 
 def read_csv_as_nested_dict(filename, keyfield, separator, quote):
-    """
-    Inputs:
-      filename  - Name of CSV file
-      keyfield  - Field to use as key for rows
-      separator - Character that separates fields
-      quote     - Character used to optionally quote fields
-    Output:
-      Returns a dictionary of dictionaries where the outer dictionary
-      maps the value in the key_field to the corresponding row in the
-      CSV file.  The inner dictionaries map the field names to the
-      field values for that row.
-    """
-
     table = {}
 
     with open(filename, 'rt', newline='') as csv_file:
@@ -39,22 +24,10 @@ def read_csv_as_nested_dict(filename, keyfield, separator, quote):
     return table
 
 
-#print(read_csv_as_nested_dict('table1.csv', 'Field1', ',', '"'))
+print(read_csv_as_nested_dict('table1.csv', 'Field1', ',', '"'))
 
 def build_plot_values(gdpinfo, gdpdata):
-    """
-    Inputs:
-      gdpinfo - GDP data information dictionary
-      gdpdata - A single country's GDP stored in a dictionary whose
-                keys are strings indicating a year and whose values
-                are strings indicating the country's corresponding GDP
-                for that year.
-    Output:
-      Returns a list of tuples of the form (year, GDP) for the years
-      between "min_year" and "max_year", inclusive, from gdpinfo that
-      exist in gdpdata.  The year will be an integer and the GDP will
-      be a float.
-    """
+    
     table = []
     gdpdat_v2 = {}
     for k, v in gdpdata.items():
@@ -80,7 +53,7 @@ def build_plot_dict(gdpinfo, country_list):
 
 
     for country in country_list:
-        #if country in country_list:
+        if country in country_list:
         try:
             table[country] = build_plot_values(gdpinfo, gdp_dat[country])
         except KeyError:
@@ -89,7 +62,7 @@ def build_plot_dict(gdpinfo, country_list):
     return table
 
 
-#print(build_plot_dict({'min_year': 2000, 'country_name': 'Country Name', 'separator': ',', 'country_code': 'Code', 'gdpfile': 'gdptable1.csv', 'quote': '"', 'max_year': 2005}, ['Country1']))
+print(build_plot_dict({'min_year': 2000, 'country_name': 'Country Name', 'separator': ',', 'country_code': 'Code', 'gdpfile': 'gdptable1.csv', 'quote': '"', 'max_year': 2005}, ['Country1']))
 
 
-#print(build_plot_dict(gdpinfo, ['Bangladesh']))
+print(build_plot_dict(gdpinfo, ['Bangladesh']))
