@@ -1,5 +1,4 @@
-#!/usr/bin/env python3
-# -- coding: utf-8 --
+
 """
 Created on Sat Jun 16 00:01:55 2018
 @author: ritu
@@ -137,8 +136,7 @@ def render_world_map(gdpinfo, codeinfo, plot_countries, year, map_file):
       Creates a world map plot of the GDP data in gdp_mapping and outputs
       it to a file named by svg_filename.
     """
-    plot_dict_1, plot_set_1, plot_set_2 = build_map_dict_by_code(gdpinfo, 
-                                                codeinfo, plot_countries, year)
+    plot_dict_1, plot_set_1, plot_set_2 = build_map_dict_by_code(gdpinfo,codeinfo, plot_countries, year)
     
     worldmap_chart = pygal.maps.world.World()
     title_map = 'GDP by country for ' + year + ' (log scale), unifiedby common country CODE'
@@ -148,9 +146,6 @@ def render_world_map(gdpinfo, codeinfo, plot_countries, year, map_file):
     worldmap_chart.add('Missing from World Bank Data',plot_set_1 )
     worldmap_chart.add('No GDP Data' ,plot_set_2 )
     worldmap_chart.render_in_browser()
-  
-    
-    
     return
 
 
@@ -176,23 +171,10 @@ def test_render_world_map():
         "data_codes": "ISO3166-1-Alpha-3"
     }
 
-    # Get pygal country code map
     pygal_countries = pygal.maps.world.COUNTRIES
 
-    # 1960
+
     render_world_map(gdpinfo, codeinfo, pygal_countries, "1960", "isp_gdp_world_code_1960.svg")
-
-    # 1980
     render_world_map(gdpinfo, codeinfo, pygal_countries, "1980", "isp_gdp_world_code_1980.svg")
-
-    # 2000
     render_world_map(gdpinfo, codeinfo, pygal_countries, "2000", "isp_gdp_world_code_2000.svg")
-
-    # 2010
     render_world_map(gdpinfo, codeinfo, pygal_countries, "2010", "isp_gdp_world_code_2010.svg")
-
-
-# Make sure the following call to test_render_world_map is commented
-# out when submitting to OwlTest/CourseraTest.
-
-#test_render_world_map()
